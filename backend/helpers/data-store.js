@@ -11,6 +11,7 @@ let store = {
       highest_temp: 12.5,
       lowest_temp: 12.5,
       average_temp: 12.5,
+      thermal_image: null,
     },
   ],
 };
