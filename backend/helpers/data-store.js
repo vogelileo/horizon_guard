@@ -1,4 +1,19 @@
-let store = {};
+let store = {
+  'test-MAC': [
+    {
+      timeStamp: new Date().toISOString(),
+      acc_x: 12,
+      acc_y: 11,
+      acc_z: 31,
+      is_radar_1: true,
+      is_radar_2: true,
+      thermal_image: null,
+      highest_temp: 12.5,
+      lowest_temp: 12.5,
+      average_temp: 12.5,
+    },
+  ],
+};
 
 const convertDataToCorrectValues = (dataWithStrings) => {
   return {
