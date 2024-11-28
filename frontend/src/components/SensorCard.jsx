@@ -35,11 +35,6 @@ const SensorCard = ({
           ) : (
             <ConnectionOn className='img-w' />
           )}
-          {console.log(
-            new Date() - new Date(lastUpdate),
-            new Date(),
-            new Date(lastUpdate)
-          )}
 
           <WarningHex
             className='img-w'
