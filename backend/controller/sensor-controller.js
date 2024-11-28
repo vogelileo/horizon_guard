@@ -24,18 +24,28 @@ const getSensorData = async (req, res) => {
     let result = Object.keys(store).map((mac) => {
       let lastE = store[mac][store[mac].length - 1];
       let prelastE = store[mac][store[mac].length - 1];
-      if(store[mac].length >=2){
-       prelastE =  store[mac][store[mac].length - 2]
+      if (store[mac].length >= 2) {
+        prelastE = store[mac][store[mac].length - 2];
       }
       return {
         name: 'TEMP Edge ESP32',
         id: mac,
         lastUpdate: lastE.timeStamp,
         location: 'TEMP Süd West',
-        intruderDetected: intruderRadar(lastE.is_radar_1) ||intruderRadar(lastE.is_radar_2)  || intruderVibration(lastE.acc_x, lastE.acc_y, lastE.acc_z,prelastE.acc_x, prelastE.acc_y, prelastE.acc_z,),
+        intruderDetected:
+          intruderRadar(lastE.is_radar_1) ||
+          intruderRadar(lastE.is_radar_2) ||
+          intruderVibration(
+            lastE.acc_x,
+            lastE.acc_y,
+            lastE.acc_z,
+            prelastE.acc_x,
+            prelastE.acc_y,
+            prelastE.acc_z
+          ),
         vibrationEnabled:
           lastE.acc_x !== 0 && lastE.acc_y !== 0 && lastE.acc_z !== 0,
-        radarEnabled1: lastE.is_radar_1
+        radarEnabled1: lastE.is_radar_1,
         radarEnabled2: lastE.is_radar_2,
         thermalEnabled:
           lastE.highest_temp !== 0 &&
