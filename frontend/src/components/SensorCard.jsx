@@ -13,7 +13,8 @@ const SensorCard = ({
   location,
   intruderDetected,
   vibrationEnabled,
-  radarEnabled,
+  radarEnabled1,
+  radarEnabled2,
   thermalEnabled,
   thermalImage,
 }) => {
@@ -29,12 +30,15 @@ const SensorCard = ({
           </div>
         </div>
         <div className='d-f f-jc m-3 w50p'>
-          {new Date().getMilliseconds() -
-            new Date(lastUpdate).getMilliseconds() >
-          10000 ? (
+          {new Date() - new Date(lastUpdate) > 50000 ? (
             <ConnectionOff className='img-w' />
           ) : (
             <ConnectionOn className='img-w' />
+          )}
+          {console.log(
+            new Date() - new Date(lastUpdate),
+            new Date(),
+            new Date(lastUpdate)
           )}
 
           <WarningHex
@@ -47,7 +51,11 @@ const SensorCard = ({
       <div className='d-f fd-c'>
         <div className='p-1 d-f' style={{ borderBottom: '1px solid black' }}>
           <Radar className='mr-3 img-h' />
-          {radarEnabled ? <Available fill='green' /> : <></>}
+          {radarEnabled1 ? <Available fill='green' /> : <></>}
+        </div>
+        <div className='p-1 d-f' style={{ borderBottom: '1px solid black' }}>
+          <Radar className='mr-3 img-h' />
+          {radarEnabled2 ? <Available fill='green' /> : <></>}
         </div>
         <div className='p-1 d-f' style={{ borderBottom: '1px solid black' }}>
           <Activity className='mr-3 img-h' />

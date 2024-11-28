@@ -43,7 +43,8 @@ const App = () => {
               location={sensor.location}
               intruderDetected={sensor.intruderDetected}
               vibrationEnabled={sensor.vibrationEnabled}
-              radarEnabled={sensor.radarEnabled}
+              radarEnabled1={sensor.radarEnabled1}
+              radarEnabled2={sensor.radarEnabled2}
               thermalEnabled={sensor.thermalEnabled}
               thermalImage={sensor.thermalImage}
             />
