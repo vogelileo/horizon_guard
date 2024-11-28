@@ -38,7 +38,7 @@ const getSensorData = async (req, res) => {
           lastE.highest_temp !== 0 &&
           lastE.lowest_temp !== 0 &&
           lastE.average_temp !== 0,
-        thermalImage: thermalImage,
+        thermalImage: lastE.thermalImage,
       };
     });
 
