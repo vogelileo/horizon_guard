@@ -16,6 +16,9 @@ const convertDataToCorrectValues = (dataWithStrings) => {
 };
 
 const addDataPointToStore = (mac, data) => {
+  if (!store[mac]) {
+    store[mac] = [];
+  }
   if (store[mac].length > 100) {
     store[mac].shift();
   }
