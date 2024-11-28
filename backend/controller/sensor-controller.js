@@ -2,13 +2,12 @@
 /*IMPORTS*/
 /*-------------------------------------------------------------*/
 
+import { addDataPointToStore, getStore } from '../helpers/data-store.js';
 import {
   intruderRadar,
   intruderThermal,
   intruderVibration,
 } from '../helpers/intruder-detection.js';
-
-import { getStore } from '../helpers/data-store.js';
 
 /*-------------------------------------------------------------*/
 /*DECLARATION AND INITIALIZATION*/
@@ -52,6 +51,7 @@ const getSensorData = async (req, res) => {
 
 const transferdata = async (req, res) => {
   try {
+    addDataPointToStore(req.body.sensorId, req.body);
     res.sendStatus(200);
   } catch (err) {
     console.log(err);

@@ -17,15 +17,15 @@ const schema = {
   query: Joi.object({}),
   body: Joi.object({
     sensorId: Joi.string().required(),
-    acc_x: Joi.string(),
-    acc_y: Joi.string(),
-    acc_z: Joi.string(),
-    is_radar_1: Joi.string(),
-    is_radar_2: Joi.string(),
+    acc_x: Joi.number(),
+    acc_y: Joi.number(),
+    acc_z: Joi.number(),
+    is_radar_1: Joi.boolean(),
+    is_radar_2: Joi.boolean(),
     thermal_image: Joi.string(),
-    highest_temp: Joi.string(),
-    lowest_temp: Joi.string(),
-    average_temp: Joi.string(),
+    highest_temp: Joi.number(),
+    lowest_temp: Joi.number(),
+    average_temp: Joi.number(),
   }),
 };
 
