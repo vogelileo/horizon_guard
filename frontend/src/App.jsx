@@ -18,7 +18,7 @@ const App = () => {
     };
     fetchData();
 
-    let intervalId = setInterval(fetchData, 100);
+    let intervalId = setInterval(fetchData, 500);
 
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(intervalId);
