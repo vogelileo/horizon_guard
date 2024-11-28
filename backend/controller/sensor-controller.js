@@ -45,8 +45,8 @@ const getSensorData = async (req, res) => {
           ),
         vibrationEnabled:
           lastE.acc_x !== 0 && lastE.acc_y !== 0 && lastE.acc_z !== 0,
-        radarEnabled1: lastE.is_radar_1,
-        radarEnabled2: lastE.is_radar_2,
+        radarEnabled1: typeof lastE.is_radar_1 === 'boolean',
+        radarEnabled2: typeof lastE.is_radar_2 === 'boolean',
         thermalEnabled:
           lastE.highest_temp !== 0 &&
           lastE.lowest_temp !== 0 &&
