@@ -32,9 +32,9 @@ const getSensorData = async (req, res) => {
         id: mac,
         lastUpdate: lastE.timeStamp,
         location: 'TEMP Süd West',
-        intruderDetected:
-          intruderRadar(lastE.is_radar_1) ||
-          intruderRadar(lastE.is_radar_2) ||
+        intruderDetected: `${intruderRadar(lastE.is_radar_1) ? 'Radar1' : ''}${
+          intruderRadar(lastE.is_radar_2) ? 'Radar2' : ''
+        }${
           intruderVibration(
             lastE.acc_x,
             lastE.acc_y,
@@ -42,7 +42,11 @@ const getSensorData = async (req, res) => {
             prelastE.acc_x,
             prelastE.acc_y,
             prelastE.acc_z
-          ),
+          )
+            ? 'Vibration'
+            : ''
+        }`,
+
         vibrationEnabled:
           lastE.acc_x !== 0 && lastE.acc_y !== 0 && lastE.acc_z !== 0,
         radarEnabled1: typeof lastE.is_radar_1 === 'boolean',

@@ -78,6 +78,7 @@ const SensorCard = ({
         ) : (
           <></>
         )}
+        {intruderDetected ? <div>{intruderDetected}</div> : <></>}
       </div>
     </div>
   );
