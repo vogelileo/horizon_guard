@@ -47,14 +47,29 @@ const SensorCard = ({
         <div className='p-1 d-f' style={{ borderBottom: '1px solid black' }}>
           <Radar className='mr-3 img-h' />
           {radarEnabled1 ? <Available fill='green' /> : <></>}
+          {intruderDetected.includes('Radar1') ? (
+            <WarningHex fill='red' />
+          ) : (
+            <></>
+          )}
         </div>
         <div className='p-1 d-f' style={{ borderBottom: '1px solid black' }}>
           <Radar className='mr-3 img-h' />
           {radarEnabled2 ? <Available fill='green' /> : <></>}
+          {intruderDetected.includes('Radar2') ? (
+            <WarningHex fill='red' />
+          ) : (
+            <></>
+          )}
         </div>
         <div className='p-1 d-f' style={{ borderBottom: '1px solid black' }}>
           <Activity className='mr-3 img-h' />
           {vibrationEnabled ? <Available fill='green' /> : <></>}
+          {intruderDetected.includes('Vibration') ? (
+            <WarningHex fill='red' />
+          ) : (
+            <></>
+          )}
         </div>
         <div
           className='p-1 d-f fd-c'
@@ -63,6 +78,11 @@ const SensorCard = ({
           <div className='d-f'>
             <Camera className='mr-3 img-h' />
             {thermalEnabled ? <Available fill='green' /> : <></>}
+            {intruderDetected.includes('Thermal') ? (
+              <WarningHex fill='red' />
+            ) : (
+              <></>
+            )}
           </div>
           {thermalImage}
         </div>
@@ -78,7 +98,6 @@ const SensorCard = ({
         ) : (
           <></>
         )}
-        {intruderDetected ? <div>{intruderDetected}</div> : <></>}
       </div>
     </div>
   );

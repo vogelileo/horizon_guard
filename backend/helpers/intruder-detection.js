@@ -1,5 +1,5 @@
 const intruderRadar = (radar) => {
-  return radar === true;
+  return radar;
 };
 
 const intruderVibration = (x_old, y_old, z_old, x_new, y_new, z_new) => {
