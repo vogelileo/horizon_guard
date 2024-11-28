@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        'http://localhost:3001/api/horizon-guard/getSensorData'
+        'http://10.0.24.1:3001/api/horizon-guard/getSensorData'
       );
       setSensor(res.data.data);
     };
