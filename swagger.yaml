@@ -10,7 +10,7 @@ tags:
   - name: sensor
 
 paths:
-  /root:
+  /:
     get:
       tags:
         - root
@@ -74,19 +74,33 @@ paths:
                   type: string
                   example: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
                   description: Sensor id as uuidv4
-                dataThermal:
+                acc_x:
                   type: string
-                  example: 'RGlyIGlzY2ggbGFuZ3dpbGxpZyB3ZW5uIGRhcyBpbmUgcG9zdGV0IGhlc2NoIHVuZCBkZWNvZGVkIGhlc2No'
-                  format: base64
-                dataRadar:
+                  example: '42.2'
+                acc_y:
                   type: string
-                  example: 'RGlyIGlzY2ggbGFuZ3dpbGxpZyB3ZW5uIGRhcyBpbmUgcG9zdGV0IGhlc2NoIHVuZCBkZWNvZGVkIGhlc2No'
-                  format: base64
-                dataVibration:
+                  example: '42.2'
+                acc_z:
                   type: string
-                  example: 'RGlyIGlzY2ggbGFuZ3dpbGxpZyB3ZW5uIGRhcyBpbmUgcG9zdGV0IGhlc2NoIHVuZCBkZWNvZGVkIGhlc2No'
-                  format: base64
-
+                  example: '42.2'
+                is_radar_1:
+                  type: string
+                  example: 'True'
+                is_radar_2:
+                  type: string
+                  example: 'False'
+                thermal_image:
+                  type: string
+                  example: '[0,0,0,0,0,0,0]'
+                highest_temp:
+                  type: string
+                  example: '23.2'
+                lowest_temp:
+                  type: string
+                  example: '23.2'
+                average_temp:
+                  type: string
+                  example: '23.2'
       responses:
         '200':
           description: Successfully saved the data

@@ -17,9 +17,15 @@ const schema = {
   query: Joi.object({}),
   body: Joi.object({
     sensorId: Joi.string().required(),
-    dataThermal: Joi.string().base64(),
-    dataRadar: Joi.string().base64(),
-    dataVibration: Joi.string().base64(),
+    acc_x: Joi.string(),
+    acc_y: Joi.string(),
+    acc_z: Joi.string(),
+    is_radar_1: Joi.string(),
+    is_radar_2: Joi.string(),
+    thermal_image: Joi.string(),
+    highest_temp: Joi.string(),
+    lowest_temp: Joi.string(),
+    average_temp: Joi.string(),
   }),
 };
 

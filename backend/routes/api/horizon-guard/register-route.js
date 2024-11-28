@@ -15,18 +15,16 @@ const router = express.Router();
 
 const schema = {
   query: Joi.object({}),
-  body: Joi.object({
-    type: Joi.string().valid('thermal', 'radar', 'vibration').required(),
-  }),
+  body: Joi.object({}),
 };
 
-const path = '/register';
+const path = '/getSensorData';
 
 /*-------------------------------------------------------------*/
 /*MAIN*/
 /*-------------------------------------------------------------*/
 
-router.post(path, validate(schema), controller.register);
+router.get(path, validate(schema), controller.getSensorData);
 
 /*-------------------------------------------------------------*/
 /*EXPORTS*/

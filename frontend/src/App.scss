@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: calc(100vh - 80px);
+}
+.sensor {
+  border-radius: 8px;
+}
+.sensor-title {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
