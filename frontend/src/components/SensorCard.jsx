@@ -31,7 +31,7 @@ const SensorCard = ({
           </div>
         </div>
         <div className='d-f f-jc m-3 w50p'>
-          {new Date() - new Date(lastUpdate) > 50000 ? (
+          {new Date() - new Date(lastUpdate) > 30000 ? (
             <ConnectionOff className='img-w' />
           ) : (
             <ConnectionOn className='img-w' />
@@ -86,7 +86,6 @@ const SensorCard = ({
             )}
           </div>
           <ThermalCanvas thermalImage={thermalImage} />
-          {thermalImage}
         </div>
         {intruderDetected ? (
           <button

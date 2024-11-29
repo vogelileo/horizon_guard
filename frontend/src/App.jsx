@@ -18,7 +18,7 @@ const App = () => {
     };
     fetchData();
 
-    let intervalId = setInterval(fetchData, 500);
+    let intervalId = setInterval(fetchData, 300);
 
     // Cleanup function to clear the interval when the component unmounts
     return () => clearInterval(intervalId);
@@ -33,6 +33,7 @@ const App = () => {
           <h4 className='m-1'>Amount of connected sensors: {sensors.length}</h4>
         </div>
         <div>
+          {console.log(sensors)}
           {sensors.length > 0 &&
             sensors.map((sensor, index) => (
               <SensorCard
