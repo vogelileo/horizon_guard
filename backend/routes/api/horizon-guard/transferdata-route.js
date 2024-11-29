@@ -35,7 +35,7 @@ const path = '/transferdata';
 /*MAIN*/
 /*-------------------------------------------------------------*/
 
-router.post(path, validate(schema), controller.transferdata);
+router.post(path, controller.transferdata);
 
 /*-------------------------------------------------------------*/
 /*EXPORTS*/
