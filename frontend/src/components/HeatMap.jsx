@@ -1,12 +1,13 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-const ThermalCanvas = (thermalImage) => {
+const ThermalImage = ({ thermalImage }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
 
-    // Set the canvas size to match its parent element
+    console.log(thermalImage);
+
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
       canvas.width = parent.offsetWidth; // Match parent width
@@ -15,9 +16,14 @@ const ThermalCanvas = (thermalImage) => {
       drawThermalImage(); // Redraw the image after resizing
     };
 
-    // Draw the thermal image
     const drawThermalImage = () => {
       const ctx = canvas.getContext('2d');
+
+      // Normalize values to range [0, 1]
+      const min = Math.min(...thermalImage);
+      const max = Math.max(...thermalImage);
+
+      const normalize = (value) => (value - min) / (max - min);
 
       // Define grid dimensions
       const rows = 24;
@@ -31,10 +37,13 @@ const ThermalCanvas = (thermalImage) => {
       // Draw the thermal grid
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-          const value = thermalImage[row * cols + col];
+          const value = thermalImage[row * cols + col] || 0; // Default to 0 if undefined
 
-          // Map the value to a color (blue to red gradient)
-          const red = Math.min(255, value * 2.55);
+          // Normalize the value
+          const normalizedValue = normalize(value);
+
+          // Map the normalized value to a blue-to-red gradient
+          const red = Math.floor(normalizedValue * 255);
           const blue = 255 - red;
 
           ctx.fillStyle = `rgb(${red}, 0, ${blue})`;
@@ -60,10 +69,16 @@ const ThermalCanvas = (thermalImage) => {
   }, [thermalImage]);
 
   return (
-    <div style={{ width: '100%', position: 'relative' }} className='mt-2'>
+    <div
+      style={{
+        width: '100%',
+        border: '1px solid black pt-2',
+        position: 'relative',
+      }}
+    >
       <canvas ref={canvasRef} style={{ display: 'block' }}></canvas>
     </div>
   );
 };
 
-export default ThermalCanvas;
+export default ThermalImage;

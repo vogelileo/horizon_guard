@@ -86,7 +86,6 @@ const SensorCard = ({
             )}
           </div>
           <ThermalCanvas thermalImage={thermalImage} />
-          {thermalImage}
         </div>
         {intruderDetected ? (
           <button
