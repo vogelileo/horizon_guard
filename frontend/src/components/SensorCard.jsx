@@ -19,7 +19,7 @@ const SensorCard = ({
   thermalImage,
 }) => {
   return (
-    <div className='m-1 bcol-ibm-gray-30 sensor'>
+    <div className='m-1 bcol-ibm-gray-30 sensor w50p'>
       <div className='bcol-ibm-blue-40 d-f f-jb sensor-title'>
         <div>
           <h2 className='ml-1 mr-2 mb-1 text-bold'>{name}</h2>
