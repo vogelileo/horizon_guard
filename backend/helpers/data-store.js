@@ -50,13 +50,16 @@ const addDataPointToStore = (mac, data) => {
   if (store[mac].length > 100) {
     store[mac].shift();
   }
-  let obj = {
-    ...data,
-    timeStamp: new Date().toISOString(),
-  };
+  // let obj = {
+  //   ...data,
+  //   timeStamp: new Date().toISOString(),
+  // };
 
-  obj.thermalImage = upscaleImage(data.thermalImage);
-  store[mac].push(obj);
+  // obj.thermalImage = upscaleImage(data.thermalImage);
+  store[mac].push({
+    timeStamp: new Date().toISOString(),
+    ...data,
+  });
 };
 
 const getStore = () => {
