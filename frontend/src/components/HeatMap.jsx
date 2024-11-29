@@ -4,9 +4,12 @@ const ThermalImage = ({ thermalImage }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    let thermalImageChecked = thermalImage;
+    if (!thermalImage || thermalImage.length === 0) {
+      thermalImageChecked = Array.from({ length: 768 }, () => 1);
+    }
 
-    console.log(thermalImage);
+    const canvas = canvasRef.current;
 
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
@@ -20,8 +23,8 @@ const ThermalImage = ({ thermalImage }) => {
       const ctx = canvas.getContext('2d');
 
       // Normalize values to range [0, 1]
-      const min = Math.min(...thermalImage);
-      const max = Math.max(...thermalImage);
+      const min = Math.min(...thermalImageChecked);
+      const max = Math.max(...thermalImageChecked);
 
       const normalize = (value) => (value - min) / (max - min);
 
@@ -63,7 +66,7 @@ const ThermalImage = ({ thermalImage }) => {
 
           // Interpolate the thermal value at (origX, origY) using bilinear interpolation
           const value = bilinearInterpolate(
-            thermalImage,
+            thermalImageChecked,
             x0,
             y0,
             x1,
