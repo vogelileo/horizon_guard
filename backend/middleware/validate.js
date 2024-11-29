@@ -18,6 +18,7 @@ export default (schema) => {
       let validation = schema.body.validate(body);
       if (validation.error) {
         try {
+          console.log(validation.error.details[0].message);
           return res
             .status(400)
             .json({ error: validation.error.details[0].message });
