@@ -27,28 +27,29 @@ const App = () => {
   return (
     <>
       <Header />
-      <div className='d-f'>
+      <div className='d-f fd-c'>
         <div className='d-f fd-c mt-1'>
           <h4 className='m-1'>System Status: ONLINE</h4>
           <h4 className='m-1'>Amount of connected sensors: {sensors.length}</h4>
         </div>
-        {console.log('Sensors', sensors)}
-        {sensors.length > 0 &&
-          sensors.map((sensor, index) => (
-            <SensorCard
-              key={index}
-              name={sensor.name}
-              id={sensor.id}
-              lastUpdate={sensor.lastUpdate}
-              location={sensor.location}
-              intruderDetected={sensor.intruderDetected}
-              vibrationEnabled={sensor.vibrationEnabled}
-              radarEnabled1={sensor.radarEnabled1}
-              radarEnabled2={sensor.radarEnabled2}
-              thermalEnabled={sensor.thermalEnabled}
-              thermalImage={sensor.thermalImage}
-            />
-          ))}
+        <div>
+          {sensors.length > 0 &&
+            sensors.map((sensor, index) => (
+              <SensorCard
+                key={index}
+                name={sensor.name}
+                id={sensor.id}
+                lastUpdate={sensor.lastUpdate}
+                location={sensor.location}
+                intruderDetected={sensor.intruderDetected}
+                vibrationEnabled={sensor.vibrationEnabled}
+                radarEnabled1={sensor.radarEnabled1}
+                radarEnabled2={sensor.radarEnabled2}
+                thermalEnabled={sensor.thermalEnabled}
+                thermalImage={sensor.thermalImage}
+              />
+            ))}
+        </div>
       </div>
     </>
   );
