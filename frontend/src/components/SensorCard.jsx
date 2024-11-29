@@ -4,6 +4,7 @@ import Camera from '../assets/camera.svg?react';
 import ConnectionOff from '../assets/connection-signal--off.svg?react';
 import ConnectionOn from '../assets/connection-signal.svg?react';
 import Radar from '../assets/radar.svg?react';
+import ThermalCanvas from './HeatMap';
 import WarningHex from '../assets/warning--hex--filled.svg?react';
 
 const SensorCard = ({
@@ -84,6 +85,7 @@ const SensorCard = ({
               <></>
             )}
           </div>
+          <ThermalCanvas thermalImage={thermalImage} />
           {thermalImage}
         </div>
         {intruderDetected ? (
