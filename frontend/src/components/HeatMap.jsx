@@ -72,9 +72,10 @@ const ThermalImage = ({ thermalImage }) => {
     <div
       style={{
         width: '100%',
-        border: '1px solid black pt-2',
+        border: '1px solid black',
         position: 'relative',
       }}
+      className='mt-2'
     >
       <canvas ref={canvasRef} style={{ display: 'block' }}></canvas>
     </div>
