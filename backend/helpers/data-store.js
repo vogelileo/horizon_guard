@@ -55,7 +55,7 @@ const addDataPointToStore = (mac, data) => {
     timeStamp: new Date().toISOString(),
   };
 
-  obj.thermalImage = upscaleImage(data.thermalImage.thermalImage);
+  obj.thermalImage = upscaleImage(data.thermalImage);
   store[mac].push(obj);
 };
 
