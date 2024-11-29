@@ -22,7 +22,7 @@ const schema = {
     acc_z: Joi.number(),
     is_radar_1: Joi.boolean(),
     is_radar_2: Joi.boolean(),
-    thermalImage: Joi.string(),
+    thermalImage: Joi.array(),
     highest_temp: Joi.number(),
     lowest_temp: Joi.number(),
     average_temp: Joi.number(),
