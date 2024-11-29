@@ -1,6 +1,6 @@
 let store = {};
 
-const upscaleImage = (data = []) => {
+const upscaleImage = (data) => {
   const gridWidth = 32;
   const gridHeight = 24;
   const grid = [];
