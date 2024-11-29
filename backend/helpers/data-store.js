@@ -39,7 +39,7 @@ const upscaleImage = (data) => {
     return result;
   };
 
-  const upscaledGrid = upscaleBilinear(grid, 32, 48);
+  const upscaledGrid = upscaleBilinear(grid, 64, 48);
   return upscaledGrid;
 };
 
