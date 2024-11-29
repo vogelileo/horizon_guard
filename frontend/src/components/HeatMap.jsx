@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const ThermalImage = ({ thermalImage }) => {
   const canvasRef = useRef(null);
@@ -11,7 +11,7 @@ const ThermalImage = ({ thermalImage }) => {
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
       canvas.width = parent.offsetWidth; // Match parent width
-      canvas.height = (parent.offsetWidth / 32) * 24; // Maintain 32:24 aspect ratio
+      canvas.height = (parent.offsetWidth / 128) * 96; // Maintain 32:24 aspect ratio
 
       drawThermalImage(); // Redraw the image after resizing
     };
@@ -26,18 +26,51 @@ const ThermalImage = ({ thermalImage }) => {
       const normalize = (value) => (value - min) / (max - min);
 
       // Define grid dimensions
-      const rows = 24;
-      const cols = 32;
-      const cellWidth = canvas.width / cols;
-      const cellHeight = canvas.height / rows;
+      const originalRows = 24;
+      const originalCols = 32;
+      const upscaledRows = 96;
+      const upscaledCols = 128;
+      const cellWidth = canvas.width / upscaledCols;
+      const cellHeight = canvas.height / upscaledRows;
 
       // Clear canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Draw the thermal grid
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          const value = thermalImage[row * cols + col] || 0; // Default to 0 if undefined
+      for (let row = 0; row < upscaledRows; row++) {
+        for (let col = 0; col < upscaledCols; col++) {
+          const origX = (col / upscaledCols) * (originalCols - 1);
+          const origY = (row / upscaledRows) * (originalRows - 1);
+
+          // Find the integer coordinates of the original pixel
+          const x0 = Math.floor(origX);
+          const x1 = Math.min(x0 + 1, originalCols - 1);
+          const y0 = Math.floor(origY);
+          const y1 = Math.min(y0 + 1, originalRows - 1);
+          const bilinearInterpolate = (image, x0, y0, x1, y1, dx, dy) => {
+            const topLeft = image[y0 * 32 + x0]; // Original value at (x0, y0)
+            const topRight = image[y0 * 32 + x1]; // Original value at (x1, y0)
+            const bottomLeft = image[y1 * 32 + x0]; // Original value at (x0, y1)
+            const bottomRight = image[y1 * 32 + x1]; // Original value at (x1, y1)
+
+            // Interpolate along the x-axis
+            const top = topLeft + (topRight - topLeft) * dx;
+            const bottom = bottomLeft + (bottomRight - bottomLeft) * dx;
+
+            // Interpolate along the y-axis
+            return top + (bottom - top) * dy;
+          };
+
+          // Interpolate the thermal value at (origX, origY) using bilinear interpolation
+          const value = bilinearInterpolate(
+            thermalImage,
+            x0,
+            y0,
+            x1,
+            y1,
+            origX - x0,
+            origY - y0
+          );
 
           // Normalize the value
           const normalizedValue = normalize(value);
