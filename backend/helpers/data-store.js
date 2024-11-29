@@ -1,9 +1,10 @@
 let store = {};
 
-const upscaleImage = (data) => {
+const upscaleImage = (data = []) => {
   const gridWidth = 32;
   const gridHeight = 24;
   const grid = [];
+  console.log(data);
   for (let i = 0; i < gridHeight; i++) {
     grid[i] = data.slice(i * gridWidth, (i + 1) * gridWidth);
   }
